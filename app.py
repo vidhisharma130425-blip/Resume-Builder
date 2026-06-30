@@ -2,15 +2,20 @@ from weasyprint import HTML
 from flask import Flask, render_template, request , redirect , session , url_for
 from werkzeug.security import generate_password_hash , check_password_hash
 import mysql.connector
+import os
+
 app = Flask(__name__)
 app.secret_key = "sabkijoblagegi_secret_key"
 
 try:
+    import os
+
     db = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="pass@123",
-        database="sabkijoblagegi"
+        host=os.getenv("MYSQLHOST"),
+        user=os.getenv("MYSQLUSER"),
+        password=os.getenv("MYSQLPASSWORD"),
+        database=os.getenv("MYSQLDATABASE"),
+        port=int(os.getenv("MYSQLPORT"))
     )
 
     print("Database Connected Successfully!")
