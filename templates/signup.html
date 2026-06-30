@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SabKiJobLagegi - Sign Up</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+
+            background:linear-gradient(
+                180deg,
+                #ffffff 0%,
+                #eef6ff 20%,
+                #dbeafe 45%,
+                #bfdbfe 60%,
+                #dbeafe 75%,
+                #eef6ff 90%,
+                #ffffff 100%
+            );
+        }
+
+        nav{
+            padding:20px 60px;
+        }
+
+        .brand{
+            display:flex;
+            flex-direction:column;
+        }
+
+        .logo{
+            font-size:30px;
+            font-weight:bold;
+            color:#2563eb;
+        }
+
+        .logo span{
+            color:#60a5fa;
+        }
+
+        .tagline{
+            font-size:13px;
+            color:#64748b;
+        }
+
+        .container{
+            min-height:80vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+        }
+
+        .card{
+            width:450px;
+            background:rgba(255,255,255,0.9);
+            padding:40px;
+            border-radius:18px;
+            box-shadow:0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card h1{
+            text-align:center;
+            color:#1e3a8a;
+            margin-bottom:10px;
+        }
+
+        .signin-link{
+            text-align:center;
+            margin-bottom:25px;
+        }
+
+        .signin-link a{
+            text-decoration:none;
+            color:#2563eb;
+            font-weight:bold;
+        }
+
+        label{
+            display:block;
+            margin-bottom:8px;
+            color:#334155;
+            font-weight:bold;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            border:1px solid #cbd5e1;
+            border-radius:8px;
+            margin-bottom:18px;
+            font-size:15px;
+        }
+
+        input:focus{
+            outline:none;
+            border-color:#2563eb;
+        }
+
+        .password-container{
+            position:relative;
+        }
+
+        .eye{
+            position:absolute;
+            right:15px;
+            top:12px;
+            cursor:pointer;
+        }
+
+        .rules{
+            margin-top:-10px;
+            margin-bottom:15px;
+            font-size:13px;
+        }
+
+        .rule{
+            color:red;
+            margin:3px 0;
+        }
+
+        .valid{
+            color:green;
+        }
+
+        #matchMessage{
+            font-size:14px;
+            margin-top:-10px;
+            margin-bottom:15px;
+            font-weight:bold;
+        }
+
+        .signup-btn{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:8px;
+            background:#2563eb;
+            color:white;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+        .signup-btn:hover{
+            background:#1d4ed8;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="brand">
+
+        <div class="logo">
+            SabKi<span>JobLagegi</span>
+        </div>
+
+        <div class="tagline">
+            Your journey to a better job starts here.
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Create Account</h1>
+
+        <div class="signin-link">
+            Already have an account?
+            <a href="/signin">Sign In</a>
+        </div>
+
+    <form action="/signup" method="POST">
+        <label>Full Name</label>
+
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your full name"
+        >
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+        >
+
+        {% if error %}
+        <p style="
+            
+            color:#d93025;
+            font-size:12px;
+            margin-top:2px;
+            margin-left:2px;
+        ">
+
+            {{ error }}
+        </p>
+        {% endif %}
+
+        <label>Password</label>
+
+        <div class="password-container">
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create password"
+                onkeyup="checkPassword()"
+            >
+
+            <span
+                class="eye"
+                onclick="togglePassword('password')"
+            >
+                👁
+            </span>
+
+        </div>
+
+        <div class="rules">
+
+            <div id="length" class="rule">
+                ❌ Minimum 8 characters
+            </div>
+
+            <div id="upper" class="rule">
+                ❌ One uppercase letter
+            </div>
+
+            <div id="lower" class="rule">
+                ❌ One lowercase letter
+            </div>
+
+            <div id="number" class="rule">
+                ❌ One number
+            </div>
+
+            <div id="special" class="rule">
+                ❌ One special character
+            </div>
+
+        </div>
+
+        <label>Confirm Password</label>
+
+        <div class="password-container">
+
+            <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm password"
+                onkeyup="checkMatch()"
+            >
+
+            <span
+                class="eye"
+                onclick="togglePassword('confirmPassword')"
+            >
+                👁
+            </span>
+
+        </div>
+
+        <div id="matchMessage"></div>
+
+        <button
+            type="submit"
+            class="signup-btn"
+        >
+            Create Account
+        </button>
+
+    </form>
+
+    </div>
+
+</div>
+
+<script>
+
+function togglePassword(id)
+{
+    let field=document.getElementById(id);
+
+    if(field.type==="password")
+    {
+        field.type="text";
+    }
+    else
+    {
+        field.type="password";
+    }
+}
+
+function checkPassword()
+{
+    let password =
+    document.getElementById("password").value;
+
+    updateRule(
+        "length",
+        password.length >= 8
+    );
+
+    updateRule(
+        "upper",
+        /[A-Z]/.test(password)
+    );
+
+    updateRule(
+        "lower",
+        /[a-z]/.test(password)
+    );
+
+    updateRule(
+        "number",
+        /[0-9]/.test(password)
+    );
+
+    updateRule(
+        "special",
+        /[^A-Za-z0-9]/.test(password)
+    );
+
+    checkMatch();
+}
+
+function updateRule(id, isValid)
+{
+    let rule =
+    document.getElementById(id);
+
+    const text = {
+        length: "Minimum 8 characters",
+        upper: "One uppercase letter",
+        lower: "One lowercase letter",
+        number: "One number",
+        special: "One special character"
+    };
+
+    if(isValid)
+    {
+        rule.classList.add("valid");
+        rule.innerHTML = "✔ " + text[id];
+    }
+    else
+    {
+        rule.classList.remove("valid");
+        rule.innerHTML = "❌ " + text[id];
+    }
+}
+
+function checkMatch()
+{
+    let password =
+    document.getElementById("password").value;
+
+    let confirm =
+    document.getElementById("confirmPassword").value;
+
+    let message =
+    document.getElementById("matchMessage");
+
+    if(confirm==="")
+    {
+        message.innerHTML="";
+    }
+    else if(password===confirm)
+    {
+        message.style.color="green";
+        message.innerHTML=
+        "✔ Passwords match";
+    }
+    else
+    {
+        message.style.color="red";
+        message.innerHTML=
+        "❌ Passwords do not match";
+    }
+}
+
+function createAccount()
+{
+    let password =
+    document.getElementById("password").value;
+
+    let confirm =
+    document.getElementById("confirmPassword").value;
+
+    let strongPassword =
+    password.length >= 8 &&
+    /[A-Z]/.test(password) &&
+    /[a-z]/.test(password) &&
+    /[0-9]/.test(password) &&
+    /[^A-Za-z0-9]/.test(password);
+
+    if(!strongPassword)
+    {
+        alert(
+        "Please create a stronger password.");
+        return;
+    }
+
+    if(password!==confirm)
+    {
+        alert(
+        "Passwords do not match!");
+        return;
+    }
+
+    alert("Account created successfully!");
+
+    window.location.href = "signin.html";
+}
+
+const fields=[
+    "name",
+    "email",
+    "password",
+    "confirmPassword"
+];
+
+fields.forEach((id,index)=>
+{
+    document
+    .getElementById(id)
+    .addEventListener("keydown",
+    function(event)
+    {
+        if(event.key==="Enter")
+        {
+            event.preventDefault();
+
+            if(index <
+            fields.length-1)
+            {
+                document
+                .getElementById(
+                fields[index+1])
+                .focus();
+            }
+            else
+            {
+                document
+                .querySelector(
+                ".signup-btn")
+                .click();
+            }
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SabKiJobLagegi</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            background:linear-gradient(
+                180deg,
+                #ffffff 0%,
+                #eef6ff 20%,
+                #dbeafe 45%,
+                #bfdbfe 60%,
+                #dbeafe 75%,
+                #eef6ff 90%,
+                #ffffff 100%
+            );
+        }
+
+        /* Navbar */
+
+        nav{
+            position:fixed;
+            top:0;
+            width:100%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:20px 60px;
+            background:transparent;
+            z-index:1000;
+        }
+
+        .brand{
+            display:flex;
+            flex-direction:column;
+        }
+
+        .logo{
+            font-size:30px;
+            font-weight:bold;
+            color:#2563eb;
+        }
+
+        .logo span{
+            color:#60a5fa;
+        }
+
+        .tagline{
+            font-size:13px;
+            color:#64748b;
+            margin-top:2px;
+        }
+
+        .signin-btn{
+            text-decoration:none;
+            color:#2563eb;
+            border:2px solid #2563eb;
+            padding:10px 20px;
+            border-radius:8px;
+            font-weight:bold;
+            transition:0.3s;
+        }
+
+        .signin-btn:hover{
+            background:#2563eb;
+            color:white;
+        }
+
+        /* Hero Section */
+
+        .hero{
+            height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            padding:20px;
+        }
+
+        .hero h1{
+            font-size:65px;
+            color:#1e3a8a;
+            margin-bottom:20px;
+        }
+
+        .hero p{
+            max-width:750px;
+            font-size:22px;
+            line-height:1.8;
+            color:#475569;
+            margin-bottom:35px;
+        }
+
+        .btn{
+            text-decoration:none;
+            background:#2563eb;
+            color:white;
+            padding:16px 35px;
+            border-radius:10px;
+            font-size:18px;
+            font-weight:bold;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            transform:translateY(-3px);
+        }
+
+        /* Sections */
+
+        section{
+            padding:80px 10%;
+        }
+
+        section h2{
+            text-align:center;
+            font-size:38px;
+            margin-bottom:30px;
+            color:#1e293b;
+        }
+
+        /* About Section */
+
+        .about{
+            padding-top:120px;
+        }
+
+        .about p{
+            max-width:900px;
+            margin:auto;
+            text-align:center;
+            font-size:18px;
+            line-height:1.8;
+            color:#475569;
+        }
+
+        /* Features Section */
+
+        .feature-container{
+            display:flex;
+            justify-content:center;
+            flex-wrap:wrap;
+            gap:25px;
+        }
+
+        .feature-box{
+            width:280px;
+            background:rgba(255,255,255,0.85);
+            padding:25px;
+            border-radius:12px;
+            text-align:center;
+            backdrop-filter:blur(5px);
+            box-shadow:0 4px 15px rgba(0,0,0,0.08);
+            transition:0.4s;
+        }
+
+        .feature-box:hover{
+            transform:translateY(-10px);
+        }
+
+        .feature-box h3{
+            color:#2563eb;
+            margin-bottom:15px;
+        }
+
+        .feature-box p{
+            color:#555;
+            line-height:1.6;
+        }
+
+        /* Footer */
+
+        .footer{
+        margin-top:50px;
+        padding:20px 40px;
+        border-top:1px solid #d6e8f8;
+
+        
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        
+
+        }
+
+        .footer-links a{
+        text-decoration:none;
+        color:#2b6cb0;
+        margin-right:20px;
+        font-size:14px;
+        }
+
+        .footer-links a:hover{
+        text-decoration:underline;
+        }
+
+        .footer p{
+        color:#555;
+        font-size:14px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav>
+
+        <div class="brand">
+
+            <div class="logo">
+                SabKi<span>JobLagegi</span>
+            </div>
+
+            <div class="tagline">
+                Your journey to a better job starts here.
+            </div>
+
+        </div>
+
+        <a href="/signin"  class="signin-btn">
+            Sign In
+        </a>
+
+    </nav>
+
+    <!-- Hero Section -->
+
+    <div class="hero">
+
+        <h1>
+            Create Professional Resumes in Minutes
+        </h1>
+
+        <p>
+            Design, preview and download ATS-friendly resumes with ease.
+            Build a professional resume quickly using our simple and
+            user-friendly platform and take the first step towards
+            your dream career.
+        </p>
+
+        <a href="/resume"" class="btn">
+            Create Resume
+        </a>
+
+    </div>
+
+    <!-- About Section -->
+
+    <section class="about">
+
+        <h2>About Us</h2>
+
+        <p>
+            SabKiJobLagegi is a resume-building platform designed to help
+            students and professionals create polished resumes quickly and
+            easily. Enter your details, generate a professional resume,
+            preview it instantly, and download it as a PDF. Our goal is to
+            simplify the resume creation process and help users present
+            themselves confidently for internships, placements, and job
+            opportunities.
+        </p>
+
+    </section>
+
+    <!-- Features Section -->
+
+    <section>
+
+        <h2>Features</h2>
+
+        <div class="feature-container">
+
+            <div class="feature-box">
+
+                <h3>Easy Form Entry</h3>
+
+                <p>
+                    Fill in your personal, educational and project details
+                    through a simple and intuitive interface.
+                </p>
+
+            </div>
+
+            <div class="feature-box">
+
+                <h3>Instant Preview</h3>
+
+                <p>
+                    Generate and preview your resume instantly before
+                    downloading it.
+                </p>
+
+            </div>
+
+            <div class="feature-box">
+
+                <h3>PDF Download</h3>
+
+                <p>
+                    Save your professional resume directly as a PDF file
+                    with a single click.
+                </p>
+
+            </div>
+
+            <div class="feature-box">
+
+                <h3>Professional Layout</h3>
+
+                <p>
+                    Create clean and modern resumes suitable for
+                    internships, placements and job applications.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+
+    <div class="footer-links">
+
+        <a href="#">
+            Terms & Conditions
+        </a>
+
+        <a href="#">
+            Privacy Policy
+        </a>
+
+        <a href="#">
+            Contact Us
+        </a>
+
+    </div>
+
+    <p>
+        © 2026 SabKiJobLagegi | Developed by Vidhi Sharma
+    </p>
+
+
+    </footer>
+
+
+</body>
+</html>

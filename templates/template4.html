@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Creative Portfolio Resume</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#fde2ff,#e8f1ff);
+
+padding:40px;
+
+}
+
+.resume{
+
+width:210mm;
+min-height:297mm;
+
+margin:auto;
+
+background:white;
+
+border-radius:30px;
+
+overflow:hidden;
+
+box-shadow:0 20px 45px rgba(0,0,0,.18);
+
+}
+
+.header{
+
+height:220px;
+
+background:linear-gradient(135deg,#7f5af0,#ff4d8d,#ff9f43);
+
+padding:45px;
+
+color:white;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.header::before{
+
+content:"";
+
+width:260px;
+height:260px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.15);
+
+position:absolute;
+
+top:-90px;
+right:-60px;
+
+}
+
+.header::after{
+
+content:"";
+
+width:150px;
+height:150px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.08);
+
+position:absolute;
+
+bottom:-60px;
+left:-30px;
+
+}
+
+.name{
+
+font-size:42px;
+
+font-weight:700;
+
+letter-spacing:2px;
+
+position:relative;
+
+z-index:2;
+
+}
+
+.role{
+
+font-size:18px;
+
+margin-top:10px;
+
+letter-spacing:3px;
+
+text-transform:uppercase;
+
+position:relative;
+
+z-index:2;
+
+}
+
+.contact{
+
+margin-top:30px;
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:18px;
+
+font-size:14px;
+
+position:relative;
+
+z-index:2;
+
+}
+
+.content{
+
+display:grid;
+
+grid-template-columns:34% 66%;
+
+}
+
+.left{
+
+background:#faf7ff;
+
+padding:35px 28px;
+
+}
+
+.right{
+
+padding:35px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:18px;
+
+padding:22px;
+
+margin-bottom:25px;
+
+box-shadow:0 6px 15px rgba(0,0,0,.08);
+
+}
+
+.card h2{
+
+font-size:18px;
+
+margin-bottom:15px;
+
+color:#7f5af0;
+
+letter-spacing:1px;
+
+}
+
+.about{
+
+font-size:14px;
+
+line-height:1.8;
+
+color:#555;
+
+text-align:justify;
+
+}
+
+.skill{
+
+display:inline-block;
+
+padding:9px 18px;
+
+margin:5px;
+
+border-radius:30px;
+
+font-size:13px;
+
+font-weight:600;
+
+color:white;
+
+}
+
+.purple{
+
+background:#7f5af0;
+
+}
+
+.pink{
+
+background:#ff4d8d;
+
+}
+
+.orange{
+
+background:#ff9f43;
+
+}
+
+.blue{
+
+background:#3b82f6;
+
+}
+
+.green{
+
+background:#22c55e;
+
+}
+
+.yellow{
+
+background:#f59e0b;
+
+}
+
+.section{
+
+margin-bottom:28px;
+
+}
+
+.section h2{
+
+font-size:22px;
+
+color:#7f5af0;
+
+margin-bottom:18px;
+
+position:relative;
+
+}
+
+.section h2::after{
+
+content:"";
+
+display:block;
+
+width:70px;
+
+height:4px;
+
+margin-top:8px;
+
+border-radius:20px;
+
+background:linear-gradient(to right,#7f5af0,#ff4d8d);
+
+}
+
+.project{
+
+background:white;
+
+border-radius:18px;
+
+padding:22px;
+
+margin-bottom:18px;
+
+box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+border-left:8px solid #7f5af0;
+
+}
+
+.project h3{
+
+color:#333;
+
+margin-bottom:10px;
+
+font-size:18px;
+
+}
+
+.project p{
+
+font-size:14px;
+
+line-height:1.8;
+
+color:#555;
+
+}
+
+.education{
+
+background:white;
+
+border-radius:18px;
+
+padding:20px;
+
+box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+}
+
+.education h3{
+
+color:#333;
+
+margin-bottom:8px;
+
+}
+
+.education p{
+
+font-size:14px;
+
+line-height:1.8;
+
+color:#555;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="resume">
+
+<div class="header">
+
+<div class="name">
+
+VIDHI SHARMA
+
+</div>
+
+<div class="role">
+
+Creative Designer • UI/UX • Artist
+
+</div>
+
+<div class="contact">
+
+<span>[vidhisharma@gmail.com](mailto:vidhisharma@gmail.com)</span>
+
+<span>+91 9876543210</span>
+
+<span>LinkedIn</span>
+
+<span>Behance</span>
+
+<span>Instagram</span>
+
+</div>
+
+</div>
+
+<div class="content">
+
+<div class="left">
+
+<div class="card">
+
+<h2>About Me</h2>
+
+<p class="about">
+
+Creative and detail-oriented designer passionate
+about building visually engaging digital
+experiences with a strong understanding of
+branding, design principles and user experience.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Skills</h2>
+
+<span class="skill purple">Figma</span>
+
+<span class="skill pink">Photoshop</span>
+
+<span class="skill orange">Illustrator</span>
+
+<span class="skill blue">HTML</span>
+
+<span class="skill green">CSS</span>
+
+<span class="skill yellow">Canva</span>
+
+</div>
+
+<div class="card">
+
+<h2>Portfolio</h2>
+
+<p class="about">
+
+behance.net/username
+
+<br><br>
+
+dribbble.com/username
+
+<br><br>
+
+portfolio.com
+
+</p>
+
+</div>
+
+</div>
+
+<div class="right">
+
+<div class="section">
+
+<h2>Projects</h2>
+<div class="project">
+
+<h3>Personal Portfolio Website</h3>
+
+<p>
+
+Designed and developed a modern portfolio website
+showcasing creative work, UI projects and personal
+branding with smooth layouts and responsive design.
+
+</p>
+
+</div>
+
+<div class="project">
+
+<h3>Fashion Brand Landing Page</h3>
+
+<p>
+
+Created a vibrant landing page for a fashion brand
+using modern typography, colorful layouts and
+interactive design principles.
+
+</p>
+
+</div>
+
+<div class="project">
+
+<h3>Creative Resume Builder</h3>
+
+<p>
+
+Designed multiple premium resume templates with a
+focus on aesthetics, usability and personalization
+for creative professionals.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Education</h2>
+
+<div class="education">
+
+<h3>
+
+Bachelor of Design / Computer Science
+
+</h3>
+
+<p>
+
+XYZ Institute of Design
+
+</p>
+
+<p>
+
+CGPA : 8.6 / 10
+
+</p>
+
+<p>
+
+2023 – 2027
+
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Experience</h2>
+
+<div class="project">
+
+<h3>
+
+Creative Design Intern
+
+</h3>
+
+<p>
+
+Worked on branding, social media creatives,
+marketing campaigns and UI mockups while
+collaborating with designers and developers.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Achievements</h2>
+
+<div class="project">
+
+<p>
+
+• Winner of College Design Competition
+
+<br><br>
+
+• Featured in Annual Creative Exhibition
+
+<br><br>
+
+• Designed branding materials for college events
+
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Additional Information</h2>
+
+<div class="project">
+
+<p>
+
+Languages • Volunteer Work • Publications
+
+<br><br>
+
+Hobbies • Workshops • Portfolio Links
+
+<br><br>
+
+Anything that showcases your personality
+or creative journey can be added here.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

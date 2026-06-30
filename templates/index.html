@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Resume Builder</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            width: 700px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #444;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 25px;
+            border: none;
+            background: #4a90e2;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #357abd;
+        }
+
+
+        #resume {
+            margin-top: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .resume-name {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .contact {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 2px solid black;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        #resume h2 {
+            border: none;
+            margin-top: 15px;
+        }
+
+        @media print {
+
+            form,
+            button,
+            h1:first-child {
+                display: none;
+            }
+
+            #resume {
+                border: none;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Resume Builder</h1>
+
+        <h3 style="text-align:center;color:red;">
+            Selected Template: {{ template }}
+        </h3>
+
+        <form action="/generate_resume" method="POST">
+
+            <h2>Personal Information</h2>
+
+            <label>Name</label>
+            <input type="text" id="name" name="name" value="{{ resume.full_name if resume else '' }}">
+
+
+            <label>Email</label>
+            <input type="email" id="email" name="email" value="{{ resume.email if resume else '' }}">
+
+
+            <label>Phone</label>
+            <input type="text" id="phone" name="phone" value="{{ resume.phone if resume else '' }}">
+
+
+            <label>LinkedIn</label>
+            <input type="text" id="linkedin" name="linkedin" value="{{ resume.linkedin if resume else '' }}">
+
+
+            <label>Degree</label>
+            <input type="text" id="degree" name="degree" value="{{ resume.degree if resume else '' }}">
+
+
+            <label>College</label>
+            <input type="text" id="college" name="college" value="{{ resume.college if resume else '' }}">
+
+
+            <label>CGPA</label>
+            <input type="text" id="cgpa" name="cgpa" value="{{ resume.cgpa if resume else '' }}">
+
+            <h2>Professional Summary</h2>
+
+            <textarea rows="5"
+                    id="summary"
+                    name="summary"></textarea>
+
+
+            <h2>Skills</h2>
+            <textarea rows="4" id="skills" name="skills">{{ resume.skills if resume else '' }}</textarea>
+
+
+            <h2>Projects</h2>
+
+            <p style="font-size:14px;color:#666;margin-bottom:10px;">
+            Enter one project per line.
+            </p>
+
+            <textarea rows="8"
+                    id="projects"
+                    name="projects"
+                    placeholder="Resume Builder&#10;Bug Tracking System&#10;Banking System"></textarea>
+
+            <h2>Certifications (Optional)</h2>
+
+            <textarea
+            rows="5"
+            id="certifications"
+            name="certifications"
+            placeholder="One certification per line"></textarea>
+
+
+            <h2>Achievements (Optional)</h2>
+
+            <textarea
+            rows="5"
+            id="achievements"
+            name="achievements"
+            placeholder="One achievement per line"></textarea>
+
+
+            <h2>Languages (Optional)</h2>
+
+            <input
+            type="text"
+            id="languages"
+            name="languages"
+            placeholder="English,Hindi">
+
+
+            <h2>Interests (Optional)</h2>
+
+            <input
+            type="text"
+            id="interests"
+            name="interests"
+            placeholder="Web Development,UI Design">        
+
+            <button type="submit">
+                Generate Resume
+            </button>
+
+        </form>
+
+        <div id="resume">
+
+        </div>
+
+    </div>
+
+    <script>
+
+        let selectedTemplate = {{ template }};
+
+        console.log(selectedTemplate);
+
+        function generateResume() {
+            let nameField = document.getElementById("name");
+            let name = nameField.value;
+
+            if (name.trim() === "") {
+                alert("Name is mandatory.");
+                nameField.focus();
+                return;
+            }
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value.trim();
+
+            if (phone !== "" && !/^\d{10}$/.test(phone)) {
+                alert("Phone number must be exactly 10 digits.");
+                return;
+            }
+            let linkedin = document.getElementById("linkedin").value;
+            let degree = document.getElementById("degree").value;
+            let college = document.getElementById("college").value;
+            let cgpa = document.getElementById("cgpa").value;
+            let skills = document.getElementById("skills").value.split(",");
+            let projects = document.getElementById("projects").value;
+
+            let skillList = "";
+
+            for (let i = 0; i < skills.length; i++) {
+                skillList += "<li>" + skills[i].trim() + "</li>";
+            }
+
+            let data = {
+
+                name: name,
+
+                email: email,
+
+                phone: phone,
+
+                linkedin: linkedin,
+
+                degree: degree,
+
+                college: college,
+
+                cgpa: cgpa,
+
+                skills: skillList,
+
+                projects: projects
+
+            };
+
+            if (selectedTemplate == 1) {
+                buildTemplate1(data);
+            }
+            else if (selectedTemplate == 2) {
+                buildTemplate2(data);
+            }
+            else if (selectedTemplate == 3) {
+                buildTemplate3(data);
+            }
+            else {
+                buildTemplate4(data);
+            }
+        }
+
+        function buildTemplate1(data) {
+
+            document.getElementById("resume").style.display = "block";
+
+            document.getElementById("resume").innerHTML =
+
+                '<div class="resume-name">' + data.name + '</div>' +
+
+                '<div class="contact">' +
+
+                data.email + ' | ' +
+
+                data.phone + ' | ' +
+
+                data.linkedin +
+
+                '</div>' +
+
+                '<div class="section-title">Education</div>' +
+
+                '<p><b>Degree:</b> ' + data.degree + '</p>' +
+
+                '<p><b>College:</b> ' + data.college + '</p>' +
+
+                '<p><b>CGPA:</b> ' + data.cgpa + '</p>' +
+
+                '<div class="section-title">Skills</div>' +
+
+                '<ul>' + data.skills + '</ul>' +
+
+                '<div class="section-title">Projects</div>' +
+
+                '<p>' + data.projects + '</p>';
+
+        }
+
+        function buildTemplate2(data) {
+            buildTemplate1(data);
+        }
+
+        function buildTemplate3(data) {
+            buildTemplate1(data);
+        }
+
+        function buildTemplate4(data) {
+            buildTemplate1(data);
+        }
+
+        function downloadResume() {
+            window.print();
+        }
+
+        const fields = document.querySelectorAll("input");
+
+        fields.forEach((field, index) => {
+
+            field.addEventListener("keydown", function (event) {
+
+                if (event.key === "Enter") {
+                    event.preventDefault();
+
+                    if (index < fields.length - 1) {
+                        fields[index + 1].focus();
+                    }
+                }
+
+            });
+
+        });
+
+        function saveResume() {
+            let resumeName =
+                prompt("Enter Resume Name:");
+
+
+            if (resumeName == null || resumeName.trim() == "") {
+                return;
+            }
+
+            fetch("/save_resume", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    resume_name: resumeName,
+
+                    full_name:
+                        document.getElementById("name").value,
+
+                    email:
+                        document.getElementById("email").value,
+
+                    phone:
+                        document.getElementById("phone").value,
+
+                    linkedin:
+                        document.getElementById("linkedin").value,
+
+                    degree:
+                        document.getElementById("degree").value,
+
+                    college:
+                        document.getElementById("college").value,
+
+                    cgpa:
+                        document.getElementById("cgpa").value,
+
+                    skills:
+                        document.getElementById("skills").value,
+
+                    projects:
+                        document.getElementById("projects").value
+
+                })
+
+            })
+
+                .then(response => response.text())
+
+                .then(data => {
+
+                    alert(data);
+
+                });
+
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>

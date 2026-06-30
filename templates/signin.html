@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SabKiJobLagegi - Sign In</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+
+            background:linear-gradient(
+                180deg,
+                #ffffff 0%,
+                #eef6ff 20%,
+                #dbeafe 45%,
+                #bfdbfe 60%,
+                #dbeafe 75%,
+                #eef6ff 90%,
+                #ffffff 100%
+            );
+        }
+
+        /* Navbar */
+
+        nav{
+            width:100%;
+            padding:20px 60px;
+        }
+
+        .brand{
+            display:flex;
+            flex-direction:column;
+        }
+
+        .logo{
+            font-size:30px;
+            font-weight:bold;
+            color:#2563eb;
+        }
+
+        .logo span{
+            color:#60a5fa;
+        }
+
+        .tagline{
+            font-size:13px;
+            color:#64748b;
+            margin-top:2px;
+        }
+
+        /* Main Container */
+
+        .container{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:80vh;
+            padding:20px;
+        }
+
+        /* Sign In Card */
+
+        .card{
+            width:420px;
+            background:rgba(255,255,255,0.9);
+            padding:40px;
+            border-radius:18px;
+            box-shadow:0 8px 25px rgba(0,0,0,0.1);
+            backdrop-filter:blur(5px);
+        }
+
+        .card h1{
+            text-align:center;
+            color:#1e3a8a;
+            margin-bottom:10px;
+        }
+
+        .create-account{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .create-account a{
+            text-decoration:none;
+            color:#2563eb;
+            font-weight:bold;
+        }
+
+        .create-account a:hover{
+            text-decoration:underline;
+        }
+
+        label{
+            display:block;
+            margin-bottom:8px;
+            color:#334155;
+            font-weight:bold;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            border:1px solid #cbd5e1;
+            border-radius:8px;
+            margin-bottom:20px;
+            font-size:15px;
+        }
+
+        input:focus{
+            outline:none;
+            border-color:#2563eb;
+        }
+
+        .password-container{
+            position:relative;
+        }
+
+        .show-password{
+            position:absolute;
+            right:15px;
+            top:12px;
+            cursor:pointer;
+            color:#64748b;
+            user-select:none;
+        }
+
+        .signin-btn{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:8px;
+            background:#2563eb;
+            color:white;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .signin-btn:hover{
+            background:#1d4ed8;
+        }
+
+        .divider{
+            text-align:center;
+            margin:25px 0;
+            color:#64748b;
+            font-weight:bold;
+            position:relative;
+        }
+
+        .divider::before{
+            content:"";
+            position:absolute;
+            left:0;
+            top:50%;
+            width:42%;
+            height:1px;
+            background:#cbd5e1;
+        }
+
+        .divider::after{
+            content:"";
+            position:absolute;
+            right:0;
+            top:50%;
+            width:42%;
+            height:1px;
+            background:#cbd5e1;
+        }
+
+        .google-btn{
+            width:100%;
+            padding:14px;
+            border:1px solid #cbd5e1;
+            border-radius:8px;
+            background:white;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .google-btn:hover{
+            background:#f8fafc;
+        }
+
+        @media(max-width:500px){
+
+            nav{
+                padding:20px;
+            }
+
+            .card{
+                width:100%;
+                padding:30px;
+            }
+
+            .logo{
+                font-size:24px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav>
+
+        <div class="brand">
+
+            <div class="logo">
+                SabKi<span>JobLagegi</span>
+            </div>
+
+            <div class="tagline">
+                Your journey to a better job starts here.
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- Sign In Form -->
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Welcome</h1>
+
+            <div class="create-account">
+                Don't have an account?
+                <a href="/signup">Create Account</a>
+            </div>
+
+        <form action="/signin" method="POST">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label>Password</label>
+
+            <div class="password-container">
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                {% if error %}
+                <p style="
+                    color:#d93025;
+                    font-size:12px;
+                    margin-top:5px;
+                ">
+                    {{ error }}
+                </p>
+                {% endif %}
+
+                <span
+                    class="show-password"
+                    onclick="togglePassword()"
+                >
+                    👁
+                </span>
+
+            </div>
+
+            <button type="submit" class="signin-btn">
+                Sign In
+            </button>
+
+        </form>
+
+            <div class="divider">
+                OR
+            </div>
+
+            <button class="google-btn">
+                🔵 Sign In With Google
+            </button>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function togglePassword()
+        {
+            let password =
+            document.getElementById("password");
+
+            if(password.type === "password")
+            {
+                password.type = "text";
+            }
+            else
+            {
+                password.type = "password";
+            }
+        }
+
+    </script>
+
+</body>
+</html>
