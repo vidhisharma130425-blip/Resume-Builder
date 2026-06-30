@@ -12,6 +12,7 @@ MarkupSafe==3.0.3
 mysql-connector-python==9.7.0
 packaging==26.2
 pillow==12.2.0
+psycopg2-binary==2.9.12
 pycparser==3.0
 pydyf==0.12.1
 pyphen==0.17.2

@@ -2,7 +2,6 @@ from weasyprint import HTML
 from flask import Flask, render_template, request , redirect , session , url_for
 from werkzeug.security import generate_password_hash , check_password_hash
 import mysql.connector
-
 app = Flask(__name__)
 app.secret_key = "sabkijoblagegi_secret_key"
 
@@ -312,7 +311,6 @@ def open_resume(resume_id):
         return redirect("/signin")
 
     cursor = db.cursor(dictionary=True)
-
     cursor.execute("""
         SELECT *
         FROM resumes
