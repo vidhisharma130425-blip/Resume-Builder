@@ -15,7 +15,8 @@ try:
         user=os.getenv("MYSQLUSER"),
         password=os.getenv("MYSQLPASSWORD"),
         database=os.getenv("MYSQLDATABASE"),
-        port=int(os.getenv("MYSQLPORT"))
+        port=int(os.getenv("MYSQLPORT")),
+        autocommit=True
     )
 
     print("Database Connected Successfully!")
@@ -35,6 +36,8 @@ def signin():
 
         email = request.form["email"]
         password = request.form["password"]
+
+        db.ping(reconnect=True)
 
         cursor = db.cursor(dictionary=True)
 
@@ -75,6 +78,8 @@ def signup():
         password = generate_password_hash(
             request.form["password"]
         )
+
+        db.ping(reconnect=True)
 
         cursor = db.cursor()
 
